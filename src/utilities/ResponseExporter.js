@@ -320,7 +320,11 @@ var ResponseExporter = jsface.Class({
 					var failures = aggregateTestStats[testcaseName].failures;
 					totalFailuresForSuite += failures;
 					totalSuccessesForSuite += successes;
-					testcases += '\t\t<testcase name="' + _und.escape(testcaseName) + '" successes="'+successes+'" failures="' + failures + '" />\n';
+					testcases += '\t\t<testcase name="' + _und.escape(testcaseName) + '" successes="' + successes + '" failures="' + failures + '">\n';
+					for (var i = 0; i < failures; i++) {
+						testcases += '\t\t\t<failure>' + testcaseName + ' failed</failure>\n';
+					}
+					testcases += '\t\t</testcase>\n'
 				}, this);
 
 				xml += '\t<testsuite name="' + _und.escape(suite.name) + '" id="' +
